@@ -1,0 +1,57 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="DutchDictionary.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True" xmlns:my="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <!--<TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>-->
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+                <TextBox x:Name="InputTextBox" KeyDown="InputTextBox_KeyDown"></TextBox>
+                <Button Content="{Binding Path=LocalizedResources.Search, Source={StaticResource LocalizedStrings}}" x:Name="SearchButton" Click="SearchButton_Click"></Button>
+                <my:AdControl Margin="-13,0,0,0" AdUnitId="10021964" ApplicationId="65d631d8-3633-415c-b0f4-bcf256ef5d5e" Height="80" Name="adControl1" Width="480" />
+            </StackPanel>
+
+            <phone:WebBrowser  Grid.Row="1" Name="webBrowser1" Visibility="Collapsed" Height="auto" />
+        </Grid>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton x:Name="HistoryMenuItem" IconUri="appbar.feature.search.rest.png" Text="History" Click="HistoryMenuItem_Click"></shell:ApplicationBarIconButton>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="Review" x:Name="ReviewMenuItem" Click="ReviewMenuItem_Click"/>
+                <shell:ApplicationBarMenuItem Text="About" x:Name="AboutMenuItem" Click="AboutMenuItem_Click"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>
